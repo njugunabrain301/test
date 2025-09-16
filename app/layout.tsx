@@ -1,21 +1,21 @@
-// import { Inter, Cormorant_Garamond, Montserrat } from "next/font/google";
-// import { fetchBusinessProfile } from "@/utils/backendAPIs/app";
-// import { fetchCategories } from "@/utils/backendAPIs/products";
-// import { GlobalContextProvider } from "@/Context/context";
-// import { getCheckoutInfo } from "@/utils/backendAPIs/cart";
-// import { getHoliday } from "@/utils/holidays";
-// import "./globals.css";
-// import Navbar from "@/components/Navbar/Navbar";
-// import Footer from "@/components/Footer/Footer";
-// import WhatsappWidget from "@/components/WhatsappWidget/WhatsappWidget";
-// import GlobalCheckoutModal from "@/components/GlobalCheckoutModal";
-// import { Metadata } from "next";
+import { Inter, Cormorant_Garamond, Montserrat } from "next/font/google";
+import { fetchBusinessProfile } from "@/utils/backendAPIs/app";
+import { fetchCategories } from "@/utils/backendAPIs/products";
+import { GlobalContextProvider } from "@/Context/context";
+import { getCheckoutInfo } from "@/utils/backendAPIs/cart";
+import { getHoliday } from "@/utils/holidays";
+import "./globals.css";
+import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer/Footer";
+import WhatsappWidget from "@/components/WhatsappWidget/WhatsappWidget";
+import GlobalCheckoutModal from "@/components/GlobalCheckoutModal";
+import { Metadata } from "next";
 import {
-  // BusinessProfile,
-  // DeliveryLocation,
-  // CheckoutInfo,
+  BusinessProfile,
+  DeliveryLocation,
+  CheckoutInfo,
   RootLayoutProps,
-  // ApiResponse,
+  ApiResponse,
 } from "@/utils/models";
 
 export const runtime = "nodejs";
