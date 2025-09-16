@@ -164,7 +164,7 @@ export default function ProductPageClient({
                     Key Features
                   </h3>
                   <ul className="space-y-2">
-                    {product.USPs.map((usp, index) => (
+                    {product.USPs.map((usp: any, index: number) => (
                       <li key={index} className="flex items-start">
                         <span className="text-green-500 mr-2">✓</span>
                         <span className="text-gray-700">{usp}</span>
@@ -181,7 +181,7 @@ export default function ProductPageClient({
                     Special Offers
                   </h3>
                   <div className="space-y-2">
-                    {product.offers.map((offer, index) => (
+                    {product.offers.map((offer: any, index: number) => (
                       <div key={index} className="p-1">
                         <span className="text-yellow-800 font-medium">
                           🎁 {offer}
@@ -200,14 +200,16 @@ export default function ProductPageClient({
                       Shipping Options
                     </h3>
                     <div className="space-y-2">
-                      {product.shippingOptions.map((option, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                        >
-                          <span className="text-gray-700">{option}</span>
-                        </div>
-                      ))}
+                      {product.shippingOptions.map(
+                        (option: any, index: number) => (
+                          <div
+                            key={index}
+                            className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                          >
+                            <span className="text-gray-700">{option}</span>
+                          </div>
+                        )
+                      )}
                     </div>
                   </div>
                 )}
@@ -256,30 +258,32 @@ export default function ProductPageClient({
               Related Products
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {product.others.slice(0, 8).map((relatedProduct, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-                >
-                  {relatedProduct.img && (
-                    <img
-                      src={relatedProduct.img}
-                      alt={relatedProduct.name}
-                      className="w-full h-48 object-cover"
-                    />
-                  )}
-                  <div className="p-4">
-                    <h3 className="font-medium text-gray-900 mb-2">
-                      {relatedProduct.name}
-                    </h3>
-                    {profile?.showPrice && relatedProduct.price && (
-                      <p className="text-lg font-bold text-green-600">
-                        KES {relatedProduct.price.toLocaleString()}
-                      </p>
+              {product.others
+                .slice(0, 8)
+                .map((relatedProduct: any, index: number) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                  >
+                    {relatedProduct.img && (
+                      <img
+                        src={relatedProduct.img}
+                        alt={relatedProduct.name}
+                        className="w-full h-48 object-cover"
+                      />
                     )}
+                    <div className="p-4">
+                      <h3 className="font-medium text-gray-900 mb-2">
+                        {relatedProduct.name}
+                      </h3>
+                      {profile?.showPrice && relatedProduct.price && (
+                        <p className="text-lg font-bold text-green-600">
+                          KES {relatedProduct.price.toLocaleString()}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         )}

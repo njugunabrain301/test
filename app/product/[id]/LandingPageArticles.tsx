@@ -218,7 +218,7 @@ export default function LandingPageArticles({
                     </p>
                   )}
                   <ul className="list-disc ml-7 leading-8">
-                    {content.items.map((item, idx) => (
+                    {content.items.map((item: any, idx: number) => (
                       <li
                         key={idx}
                         dangerouslySetInnerHTML={{
@@ -242,7 +242,7 @@ export default function LandingPageArticles({
                 className="w-full max-w-4xl mx-auto my-5 flex justify-center flex-wrap items-center"
               >
                 <div className="flex justify-evenly flex-wrap items-center w-full">
-                  {content.values.map((value, idx) => (
+                  {content.values.map((value: any, idx: number) => (
                     <Counter
                       key={idx}
                       value={value.value}

@@ -45,7 +45,7 @@ export default function PriceOptions({
     <div className="mb-4">
       <h3 className="text-lg font-medium text-gray-900 mb-3">Price Options</h3>
       <div className="space-y-2">
-        {priceOptions.map((option, index) => (
+        {priceOptions.map((option: PriceOption, index: number) => (
           <div
             key={index}
             className={`p-3 border rounded-lg cursor-pointer transition-all duration-200 ${

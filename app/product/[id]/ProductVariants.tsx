@@ -35,7 +35,7 @@ export default function ProductVariants({
         <div>
           <h3 className="text-lg font-medium text-gray-900 mb-3">Colors</h3>
           <div className="flex flex-wrap gap-3">
-            {colors.map((color, index) => (
+            {colors.map((color: string, index: number) => (
               <button
                 key={index}
                 onClick={() => handleColorSelect(color)}
@@ -65,7 +65,7 @@ export default function ProductVariants({
         <div>
           <h3 className="text-lg font-medium text-gray-900 mb-3">Sizes</h3>
           <div className="flex flex-wrap gap-2">
-            {sizes.map((size, index) => (
+            {sizes.map((size: string, index: number) => (
               <button
                 key={index}
                 onClick={() => handleSizeSelect(size)}

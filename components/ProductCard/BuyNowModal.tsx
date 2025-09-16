@@ -148,7 +148,7 @@ const BuyNowModal: React.FC<BuyNowModalProps> = ({
       if (response.success) {
         // Track purchase event
         pushEvent("purchase", "purchase", {
-          transaction_id: response.data?.paymentCode || "temp_" + Date.now(),
+          transaction_id: "temp_" + Date.now(),
           value: getTotalPrice(),
           currency: "KES",
           items: [

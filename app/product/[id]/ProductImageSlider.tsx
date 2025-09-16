@@ -30,7 +30,7 @@ export default function ProductImageSlider({
     }
 
     if (images && images.length > 0) {
-      images.forEach((img) => {
+      images.forEach((img: ProductImage) => {
         if (img.img && !imageList.includes(img.img)) {
           imageList.push(img.img);
         }
@@ -131,7 +131,7 @@ export default function ProductImageSlider({
       {/* Thumbnail Navigation (only show if more than 1 image) */}
       {allImages.length > 1 && (
         <div className="grid grid-cols-4 gap-2">
-          {allImages.map((image, index) => (
+          {allImages.map((image: string, index: number) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
@@ -155,7 +155,7 @@ export default function ProductImageSlider({
       {/* Dot Indicators (only show if more than 1 image) */}
       {allImages.length > 1 && (
         <div className="flex justify-center space-x-2">
-          {allImages.map((_, index) => (
+          {allImages.map((_: string, index: number) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}

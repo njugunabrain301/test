@@ -63,7 +63,7 @@ export default function ProductDetailsTabs({
       case "specs":
         return (
           <div className="space-y-6">
-            {product.specs?.map((spec, index) => (
+            {product.specs?.map((spec: any, index: number) => (
               <div key={index} className="border-b border-gray-200 pb-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {spec.name}
@@ -82,7 +82,7 @@ export default function ProductDetailsTabs({
       case "faqs":
         return (
           <div className="space-y-4">
-            {product.faqs?.map((faq, index) => (
+            {product.faqs?.map((faq: any, index: number) => (
               <div
                 key={index}
                 className="border border-gray-200 rounded-lg p-4"
@@ -99,7 +99,7 @@ export default function ProductDetailsTabs({
       case "reviews":
         return (
           <div className="space-y-4">
-            {product.reviews?.map((review, index) => (
+            {product.reviews?.map((review: any, index: number) => (
               <div
                 key={index}
                 className="border border-gray-200 rounded-lg p-4"
@@ -126,7 +126,7 @@ export default function ProductDetailsTabs({
                 )}
                 {review.media && review.media.length > 0 && (
                   <div className="mt-3 flex flex-wrap gap-2">
-                    {review.media.map((media, mediaIndex) => (
+                    {review.media.map((media: any, mediaIndex: number) => (
                       <div
                         key={mediaIndex}
                         className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center"
@@ -154,7 +154,7 @@ export default function ProductDetailsTabs({
     <div className="mt-8 bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="border-b border-gray-200">
         <nav className="flex space-x-8 px-6">
-          {tabs.map((tab) => (
+          {tabs.map((tab: any) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
