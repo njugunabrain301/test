@@ -87,65 +87,65 @@ export async function generateMetadata(): Promise<Metadata> {
   return metadata;
 }
 
-// const inter = Inter({ subsets: ["latin"] });
-// const montserrat = Montserrat({ subsets: ["latin"] });
-// const garamond = Cormorant_Garamond({ subsets: ["latin"], weight: "400" });
+const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
+const garamond = Cormorant_Garamond({ subsets: ["latin"], weight: "400" });
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  // let profileRes: ApiResponse<BusinessProfile> = await fetchBusinessProfile();
+  let profileRes: ApiResponse<BusinessProfile> = await fetchBusinessProfile();
 
-  // if (!profileRes.success || !profileRes.data) {
-  //   // Handle error case - return error page
-  //   return (
-  //     <html lang="en">
-  //       <body>
-  //         <div>Failed to load store profile</div>
-  //       </body>
-  //     </html>
-  //   );
-  // }
+  if (!profileRes.success || !profileRes.data) {
+    // Handle error case - return error page
+    return (
+      <html lang="en">
+        <body>
+          <div>Failed to load store profile</div>
+        </body>
+      </html>
+    );
+  }
 
-  // let profile: BusinessProfile = profileRes.data;
+  let profile: BusinessProfile = profileRes.data;
 
-  // let bodyFont = montserrat;
-  // let titleFont = garamond;
-  // let subtitleFont = garamond;
+  let bodyFont = montserrat;
+  let titleFont = garamond;
+  let subtitleFont = garamond;
 
-  // if (profile.template === "Timeless") {
-  //   bodyFont = inter;
-  //   titleFont = inter;
-  //   subtitleFont = inter;
-  // }
+  if (profile.template === "Timeless") {
+    bodyFont = inter;
+    titleFont = inter;
+    subtitleFont = inter;
+  }
 
-  // let checkoutRes: ApiResponse<CheckoutInfo> = await getCheckoutInfo();
-  // let checkoutinfo: CheckoutInfo = checkoutRes.data
-  //   ? { ...checkoutRes.data }
-  //   : {};
+  let checkoutRes: ApiResponse<CheckoutInfo> = await getCheckoutInfo();
+  let checkoutinfo: CheckoutInfo = checkoutRes.data
+    ? { ...checkoutRes.data }
+    : {};
 
-  // if (checkoutRes.success && checkoutRes.data) {
-  //   checkoutinfo.paymentOptions = checkoutRes.data.paymentOptions;
-  //   checkoutinfo.deliveryLocations = checkoutRes.data.deliveryLocations;
+  if (checkoutRes.success && checkoutRes.data) {
+    checkoutinfo.paymentOptions = checkoutRes.data.paymentOptions;
+    checkoutinfo.deliveryLocations = checkoutRes.data.deliveryLocations;
 
-  //   checkoutinfo.counties = [];
-  //   let added: string[] = [];
-  //   checkoutinfo.deliveryLocations?.map((loc: DeliveryLocation) => {
-  //     if (!added.includes(loc.county)) checkoutinfo.counties?.push(loc.county);
-  //     if (loc.payOnDelivery) {
-  //       let idx = checkoutinfo.counties?.indexOf(loc.county);
-  //       if (idx !== undefined && idx !== -1) {
-  //         checkoutinfo.counties![idx] = loc.county + "*";
-  //       }
-  //     }
-  //     added.push(loc.county);
-  //     return loc;
-  //   });
-  // }
+    checkoutinfo.counties = [];
+    let added: string[] = [];
+    checkoutinfo.deliveryLocations?.map((loc: DeliveryLocation) => {
+      if (!added.includes(loc.county)) checkoutinfo.counties?.push(loc.county);
+      if (loc.payOnDelivery) {
+        let idx = checkoutinfo.counties?.indexOf(loc.county);
+        if (idx !== undefined && idx !== -1) {
+          checkoutinfo.counties![idx] = loc.county + "*";
+        }
+      }
+      added.push(loc.county);
+      return loc;
+    });
+  }
 
-  // const holiday = getHoliday();
+  const holiday = getHoliday();
 
-  // if (profile.holidayTheme) {
-  //   (profile as any).holiday = holiday;
-  // }
+  if (profile.holidayTheme) {
+    (profile as any).holiday = holiday;
+  }
 
   return (
     <html lang="en">
