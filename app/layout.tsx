@@ -150,7 +150,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       Hello G
-      {/* <body className={bodyFont.className + " App min-w-[330px] p-0"}>
+      <body className={bodyFont.className + " App min-w-[330px] p-0"}>
         <GlobalContextProvider
           profile={profile}
           titleFont={titleFont}
@@ -172,7 +172,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             <GlobalCheckoutModal />
           </div>
         </GlobalContextProvider>
-      </body> */}
+      </body>
     </html>
   );
 }
