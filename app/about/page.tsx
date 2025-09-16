@@ -9,6 +9,10 @@ export default async function AboutPage() {
   const response = await fetchAboutUs();
   const business = response.data;
 
+  if (!business) {
+    return <div>No business found</div>;
+  }
+
   return (
     <div className="min-h-screen py-12 px-4">
       <div className="max-w-4xl mx-auto">
