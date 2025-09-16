@@ -92,7 +92,7 @@ export const GlobalContextProvider = ({
   const handleCloseAuth = () => {
     setOpenAuth(false);
   };
-  const theme = MUIThemes[profile.theme.toLowerCase()];
+  const theme = MUIThemes[profile?.theme?.toLowerCase() || "classic"];
   // const theme = MUIThemes["dawn"];
 
   const [miniHeader, setMiniHeader] = useState(false);
