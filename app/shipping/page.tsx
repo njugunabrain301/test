@@ -11,6 +11,13 @@ export async function generateMetadata(): Promise<Metadata> {
     const profileResponse = await fetchBusinessProfile();
     const profile = profileResponse.data;
 
+    if (!profile) {
+      return {
+        title: "Shipping Policy",
+        description:
+          "Shipping and delivery information. View delivery locations, shipping costs, and delivery options.",
+      };
+    }
     return {
       title: `Shipping Policy - ${profile.name}`,
       description: `Shipping and delivery information for ${profile.name}. View delivery locations, shipping costs, and delivery options.`,
@@ -40,6 +47,10 @@ export default async function ShippingPage() {
   const profileResponse = await fetchBusinessProfile();
   const profile = profileResponse.data;
 
+  if (!profile) {
+    return <div>No profile found</div>;
+  }
+
   // Fetch shipping information
   const checkoutInfoResponse = await getCheckoutInfo();
   const shippingPolicyResponse = await fetchShippingPolicy();
@@ -51,10 +62,13 @@ export default async function ShippingPage() {
     checkoutInfo?.deliveryLocations || [];
   const paymentOptions: PaymentOption[] = checkoutInfo?.paymentOptions || [];
 
+  if (!checkoutInfo || !shippingPolicy) {
+    return <div>No checkout info or shipping policy found</div>;
+  }
+
   // Calculate counties from delivery locations instead of using API counties array
-  const counties: string[] = [
-    ...new Set(deliveryLocations.map((loc) => loc.county)),
-  ];
+  const counties: any[] = [];
+  // ...new Set(deliveryLocations.map((loc) => loc.county)),
 
   // Group delivery locations by county
   const locationsByCounty = deliveryLocations.reduce((acc, location) => {
@@ -67,7 +81,9 @@ export default async function ShippingPage() {
   }, {} as Record<string, DeliveryLocation[]>);
 
   // Get unique couriers
-  const couriers = [...new Set(deliveryLocations.map((loc) => loc.courier))];
+  const couriers: any[] = [
+    // ...new Set(deliveryLocations.map((loc) => loc.courier))
+  ];
 
   // Calculate delivery statistics
   const totalLocations = deliveryLocations.length;
@@ -330,8 +346,8 @@ export default async function ShippingPage() {
                   const courierLocations = deliveryLocations.filter(
                     (loc) => loc.courier === courier
                   );
-                  const courierCounties = [
-                    ...new Set(courierLocations.map((loc) => loc.county)),
+                  const courierCounties: any[] = [
+                    // ...new Set(courierLocations.map((loc) => loc.county)),
                   ];
                   const courierPayOnDelivery = courierLocations.filter(
                     (loc) => loc.payOnDelivery

@@ -50,42 +50,47 @@ export default async function ReturnsPage() {
                 )}
 
               {/* Timeline */}
-              {returnsPolicy.raiseTimeline && (
-                <section>
-                  <h2 className="text-2xl font-semibold mb-4">
-                    Return Timeline
-                  </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="text-lg font-medium mb-2">
-                        Raise Return Request
-                      </h3>
-                      <p>
-                        You have {returnsPolicy.raiseTimeline.amount}{" "}
-                        {returnsPolicy.raiseTimeline.unit}
-                        {returnsPolicy.raiseTimeline.amount > 1 ? "s" : ""} from
-                        the date of delivery to raise a return request.
-                      </p>
-                    </div>
-                    {returnsPolicy.refundTimeline && (
+              {returnsPolicy.raiseTimeline &&
+                returnsPolicy.raiseTimeline.amount &&
+                returnsPolicy.raiseTimeline.unit && (
+                  <section>
+                    <h2 className="text-2xl font-semibold mb-4">
+                      Return Timeline
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <h3 className="text-lg font-medium mb-2">
-                          Refund Processing
+                          Raise Return Request
                         </h3>
                         <p>
-                          Refunds are processed within{" "}
-                          {returnsPolicy.refundTimeline.amount}{" "}
-                          {returnsPolicy.refundTimeline.unit}
-                          {returnsPolicy.refundTimeline.amount > 1
+                          You have {returnsPolicy.raiseTimeline.amount}{" "}
+                          {returnsPolicy.raiseTimeline.unit}
+                          {returnsPolicy.raiseTimeline.amount > 1
                             ? "s"
                             : ""}{" "}
-                          of receiving the returned item.
+                          from the date of delivery to raise a return request.
                         </p>
                       </div>
-                    )}
-                  </div>
-                </section>
-              )}
+                      {returnsPolicy.refundTimeline && (
+                        <div>
+                          <h3 className="text-lg font-medium mb-2">
+                            Refund Processing
+                          </h3>
+                          <p>
+                            Refunds are processed within{" "}
+                            {returnsPolicy.refundTimeline.amount}{" "}
+                            {returnsPolicy.refundTimeline.unit}
+                            {returnsPolicy.refundTimeline.amount &&
+                            returnsPolicy.refundTimeline.amount > 1
+                              ? "s"
+                              : ""}{" "}
+                            of receiving the returned item.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </section>
+                )}
 
               {/* Refund Options */}
               <section>

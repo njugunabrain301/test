@@ -29,7 +29,14 @@ export async function generateMetadata({
       fetchBusinessProfile(),
     ]);
 
-    if (productRes.success && profileRes.success && productRes.data) {
+    if (!productRes.success || !productRes.data) {
+      return {
+        title: "Product Not Found",
+        description: "The requested product could not be found.",
+      };
+    }
+
+    if (profileRes.success && profileRes.data) {
       const product = productRes.data;
       const profile = profileRes.data;
 
@@ -124,6 +131,28 @@ export default async function ProductPage({
     }
 
     const product = productRes.data;
+
+    if (!product) {
+      return (
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">
+              Product Not Found
+            </h1>
+            <p className="text-gray-600 mb-6">
+              The product you're looking for doesn't exist.
+            </p>
+            <Link
+              href="/products"
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Browse Products
+            </Link>
+          </div>
+        </div>
+      );
+    }
+
     const profile = profileRes.data;
 
     if (!product || !profile) {
@@ -150,22 +179,24 @@ export default async function ProductPage({
     let articles: any[] = [];
     let miniHeader = false;
 
-    if (source !== "google") {
-      if (lp) {
-        const landingPage = product.landingPages.find(
-          (lpItem) => lpItem.name === lp
-        );
-        if (landingPage) {
-          articles = landingPage.articles;
-          miniHeader = landingPage.miniHeader;
-        }
-      } else {
-        const defaultLandingPage = product.landingPages.find(
-          (lpItem) => lpItem.default || lpItem.name === "default"
-        );
-        if (defaultLandingPage) {
-          articles = defaultLandingPage.articles;
-          miniHeader = defaultLandingPage.miniHeader;
+    if (product.landingPages) {
+      if (source !== "google") {
+        if (lp) {
+          const landingPage = product.landingPages.find(
+            (lpItem) => lpItem.name === lp
+          );
+          if (landingPage) {
+            articles = landingPage.articles;
+            miniHeader = landingPage.miniHeader;
+          }
+        } else {
+          const defaultLandingPage = product.landingPages.find(
+            (lpItem) => lpItem.default || lpItem.name === "default"
+          );
+          if (defaultLandingPage) {
+            articles = defaultLandingPage.articles;
+            miniHeader = defaultLandingPage.miniHeader;
+          }
         }
       }
     }

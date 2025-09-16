@@ -8,6 +8,14 @@ export async function generateMetadata(): Promise<Metadata> {
     const profileResponse = await fetchBusinessProfile();
     const profile = profileResponse.data;
 
+    if (!profile) {
+      return {
+        title: "Privacy Policy",
+        description:
+          "Privacy Policy - Learn how we collect, use, and protect your personal information.",
+      };
+    }
+
     return {
       title: `Privacy Policy - ${profile.name}`,
       description: `Privacy Policy for ${profile.name}. Learn how we collect, use, and protect your personal information.`,
@@ -35,6 +43,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function PrivacyPolicyPage() {
   const profileResponse = await fetchBusinessProfile();
   const profile = profileResponse.data;
+
+  if (!profile) {
+    return <div>No business found</div>;
+  }
 
   return (
     <div className="min-h-screen py-12 px-4 bg-white">

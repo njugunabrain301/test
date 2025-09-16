@@ -7,6 +7,13 @@ export async function generateMetadata(): Promise<Metadata> {
   try {
     const profileResponse = await fetchBusinessProfile();
     const profile = profileResponse.data;
+    if (!profile) {
+      return {
+        title: "Terms and Conditions",
+        description:
+          "Terms and Conditions - Read our terms of service, user agreements, and policies.",
+      };
+    }
 
     return {
       title: `Terms and Conditions - ${profile.name}`,
@@ -36,6 +43,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function TermsAndConditionsPage() {
   const profileResponse = await fetchBusinessProfile();
   const profile = profileResponse.data;
+
+  if (!profile) {
+    return <div>No profile found</div>;
+  }
 
   return (
     <div className="min-h-screen py-12 px-4 bg-white">

@@ -44,7 +44,7 @@ export default function ProductsPage() {
           setCategories(categoriesRes.data || []);
         }
 
-        if (profileRes.success) {
+        if (profileRes.success && profileRes.data) {
           setProfile(profileRes.data);
         }
       } catch (err) {

@@ -10,6 +10,13 @@ export async function generateMetadata(): Promise<Metadata> {
     const profileResponse = await fetchBusinessProfile();
     const profile = profileResponse.data;
 
+    if (!profile) {
+      return {
+        title: "My Orders",
+        description: "View your order history and track your purchases.",
+      };
+    }
+
     return {
       title: `My Orders - ${profile.name}`,
       description: `View your order history and track your purchases at ${profile.name}.`,
